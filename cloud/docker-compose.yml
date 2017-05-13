@@ -1,0 +1,17 @@
+version: '3'
+services:
+  caddy:
+    image: abiosoft/caddy
+    restart: always
+    environment:
+      CADDYPATH: "/etc/caddycerts"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - caddy-certs:/etc/caddycerts
+      - caddy-web:/srv
+    ports:
+      - "80:80"
+      - "443:443"
+volumes:
+  caddy-certs:
+  caddy-web:
