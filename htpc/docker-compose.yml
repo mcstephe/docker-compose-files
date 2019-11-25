@@ -53,8 +53,8 @@ services:
     image: linuxserver/lidarr
     container_name: lidarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1001
+      - PGID=1001
       - TZ=America/New_York
       - UMASK_SET=022 #optional
     volumes:
