@@ -1,15 +1,15 @@
-# HTPC Docker-Compose Example
+# HTPC Docker-Compose-Files
 
 This pulls together several docker images to setup automated PVR and streaming service using
 
-- CouchPotato
+- Radarr
   - Automated movie PVR
 - Sonarr
   - Automated television PVR
 - Sabnzbd
   - Usenet downloader
-- Plex
-  - Personal media server
+- Lidarr
+  - Automated music PVR
 
 ## Prerequisites
 
@@ -28,12 +28,12 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 
 Run `docker-compose build`. It will
 
-* install CouchPotato, Sonarr, Sabnzbd, and Plex in your container
+* installs containers
 * expose ports 5050, 8989, 8080, and 32400
 
 ## Start
 
-Run `docker-compose up` to create and start CouchPotato, Sonarr, Sabnzbd, and Plex containers. The app should then be running on your docker daemon on ports 5050, 8989, 8080, and 32400
+Run `docker-compose up` to create and start containers. The app should then be running on your docker daemon on ports 5050, 8989, 8080, and 32400
 
 Refer to the references section for setup instructions for each app.
 
