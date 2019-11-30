@@ -5,13 +5,13 @@ services:
     image: linuxserver/sabnzbd
     container_name: sabnzbd
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=America/New_York
     volumes:
-      - /.docker/sabnzbd/config:/config
-      - /.docker/sabnzbd/downloads/complete:/downloads
-      - /.docker/sabnzbd/downloads/incomplete:/incomplete-downloads #optional
+      - ~/config/sabnzbd:/config
+      - /mnt/media/downloads/complete:/downloads
+      - /mnt/media/downloads/incomplete:/incomplete-downloads #optional
     ports:
       - 8080:8080
       - 9090:9090
@@ -21,14 +21,14 @@ services:
     image: linuxserver/sonarr
     container_name: sonarr
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=America/New_York
       - UMASK_SET=022 #optional
     volumes:
-      - /.docker/sonarr/config:/config
+      - ~/config/sonarr:/config
       - /mnt/media/TV:/tv
-      - /.docker/sabnzbd/downloads/complete:/downloads
+      - /mnt/media/downloads/complete:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -37,14 +37,14 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=America/New_York
       - UMASK_SET=022 #optional
     volumes:
-      - /.docker/radarr/config:/config
+      - ~/config/radarr:/config
       - /mnt/media/Movies:/movies
-      - /.docker/sabnzbd/downloads/complete:/downloads
+      - /mnt/media/downloads/complete:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -53,14 +53,27 @@ services:
     image: linuxserver/lidarr
     container_name: lidarr
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=America/New_York
       - UMASK_SET=022 #optional
     volumes:
-      - /.docker/lidarr/config:/config
+      - ~/config/lidarr:/config
       - /mnt/media/Music:/music
-      - /.docker/sabnzbd/downloads/complete:/downloads
+      - /mnt/media/downloads/complete:/downloads
     ports:
       - 8686:8686
+    restart: unless-stopped
+
+  organizr:
+    image: linuxserver/organizr
+    container_name: organizr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ~/config/organizr:/config
+    ports:
+      - 9983:80
     restart: unless-stopped
